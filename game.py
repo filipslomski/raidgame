@@ -2,45 +2,40 @@ import pygame
 from init import Init
 from colors import Colors
 from car import Car
+from position import Position
+from consts import Consts
 
-init = Init(1600, 900, "Game")
+init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
 
-clock = pygame.time.Clock()
-crashed = False
+car = Car(init)
+car.spawn()
 
-x = (init.display_width * 0.45)
-y = (init.display_height * 0.69)
+key_bindings = {
+    pygame.K_LEFT: car.move_left,
+    pygame.K_RIGHT: car.move_right,
+    pygame.K_UP: car.move_up,
+    pygame.K_DOWN: car.move_down
+}
 
-car = Car('car.png', 75, 250, x, y, init)
-carImg = pygame.image.load_extended('car.png')
 
-while not crashed:
-
+def event_control():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            crashed = True
+            pygame.quit()
+            quit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                car.pos_x -= 5
-            elif event.key == pygame.K_RIGHT:
-                car.pos_x += 5
-            elif event.key == pygame.K_UP:
-                car.pos_y -= 5
-            elif event.key == pygame.K_DOWN:
-                car.pos_y += 5
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                pass
+            if event.key in key_bindings:
+                key_bindings[event.key]()
 
-        print(event)
-
+while True:
+    event_control()
 
     pygame.display.update()
-    init.clock.tick(60)
+    init.clock.tick(Consts.FRAME_RATE)
 
     init.gameDisplay.fill(Colors.WHITE)
     car.display()
+    if car.out_of_screen:
+        pass
 
-pygame.quit()
-quit()

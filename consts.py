@@ -1,0 +1,5 @@
+class Consts():
+    SCREEN_WIDTH = 1600
+    SCREEN_HEIGHT = 900
+    SCREEN_CAPTION = "Game"
+    FRAME_RATE = 60
