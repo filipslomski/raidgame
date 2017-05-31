@@ -1,5 +1,6 @@
 from abc import abstractmethod
-from position import Position
+from utilities.position import Position
+
 
 class Object(object):
 

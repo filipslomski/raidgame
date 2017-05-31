@@ -1,5 +1,6 @@
 import pygame
-from colors import Colors
+
+from utilities.colors import Colors
 
 
 class Text:

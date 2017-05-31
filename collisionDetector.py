@@ -1,5 +1,3 @@
-from position import Position
-
 class CollisionDetector(object):
 
     objects = []

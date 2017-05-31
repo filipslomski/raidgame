@@ -1,12 +1,12 @@
 import pygame
-from position import Position
-from text import Text
-from object import Object
+from utilities.position import Position
+from objects.object import Object
+from utilities.text import Text
 
 
 class Car(Object):
 
-    image_path = "car.png"
+    image_path = "images/car.png"
     image = None
     speed = 7
 

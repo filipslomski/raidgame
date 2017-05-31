@@ -1,11 +1,9 @@
 import pygame
+from utilities.colors import Colors
 from init import Init
-from colors import Colors
-from car import Car
-from position import Position
-from consts import Consts
-from text import Text
-from obstacle import Obstacle
+from objects.car import Car
+from objects.obstacle import Obstacle
+from utilities.consts import Consts
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()

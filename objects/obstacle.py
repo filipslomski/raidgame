@@ -1,8 +1,8 @@
-import pygame
 import random
-from position import Position
-from colors import Colors
-from object import Object
+import pygame
+from utilities.position import Position
+from objects.object import Object
+from utilities.colors import Colors
 
 
 class Obstacle(Object):
