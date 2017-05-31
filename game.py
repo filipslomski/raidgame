@@ -5,7 +5,7 @@ from car import Car
 from position import Position
 from consts import Consts
 from text import Text
-from object import Object
+from obstacle import Obstacle
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
@@ -13,7 +13,7 @@ init.initialise()
 # init objects
 car = Car(init)
 car.spawn()
-obstacle = Object(init)
+obstacle = Obstacle(init)
 obstacle.spawn()
 
 key_bindings = {

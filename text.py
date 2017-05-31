@@ -2,7 +2,7 @@ import pygame
 from colors import Colors
 
 
-class Text():
+class Text:
 
     init = None
 

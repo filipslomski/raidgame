@@ -1,4 +1,4 @@
-class Position(object):
+class Position:
     x = None
     y = None
 
