@@ -4,6 +4,7 @@ from init import Init
 from objects.car import Car
 from objects.obstacle import Obstacle
 from utilities.consts import Consts
+from collisionDetector import CollisionDetector
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
@@ -13,6 +14,7 @@ car = Car(init)
 car.spawn()
 obstacle = Obstacle(init)
 obstacle.spawn()
+collision_detector = CollisionDetector(car, obstacle)
 
 key_bindings = {
     pygame.K_LEFT: car.move_left,
@@ -40,5 +42,7 @@ while True:
     car.display()
     obstacle.display()
     obstacle.move()
+
+    print (collision_detector.check_collisions())
 
     pygame.display.update()
