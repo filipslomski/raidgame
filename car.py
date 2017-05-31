@@ -1,11 +1,12 @@
 import pygame
 from position import Position
+from text import Text
 
 
 class Car(object):
 
-    imgwidth = 75
-    imgheight = 250
+    width = 75
+    height = 250
     image_path = "car.png"
     image = None
     init = None
@@ -19,15 +20,13 @@ class Car(object):
 
     def spawn(self, position = None):
         if position is None:
-            self.position = Position(self.init.display_width * 0.45, self.init.display_height * 0.69)
+            self.position = Position(self.init.display_width * 0.45, self.init.display_height * 0.6)
         else:
             self.position = position
 
     def display(self):
-        if self.init.display_width - self.position.x < self.imgwidth or self.init.display_height - self.position.y < self.imgheight:
-            self.out_of_screen = True
-        else:
-            self.init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
+        self.init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
+        self.check_if_crashed()
 
     def move_left(self):
         self.position.x -= self.speed
@@ -40,5 +39,12 @@ class Car(object):
 
     def move_up(self):
         self.position.y -= self.speed
+
+    def check_if_crashed(self):
+        if self.init.display_width - self.position.x < self.width or self.init.display_height - self.position.y < self.height:
+            self.out_of_screen = True
+            Text.message_display('You crashed!')
+
+
 
 
