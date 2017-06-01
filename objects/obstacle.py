@@ -31,3 +31,6 @@ class Obstacle(Object):
     def spawn_new_if_collapsed(self):
         if self.position.y > self.init.display_height:
             self.spawn()
+
+    def collision(self):
+        self.speed = 0

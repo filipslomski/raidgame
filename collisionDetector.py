@@ -12,6 +12,8 @@ class CollisionDetector(object):
             for object_b in self.objects:
                 if not object_a is object_b and self.check_collision(object_a, object_b):
                     objects_in_collision.extend([object_a, object_b])
+                    object_a.collision()
+                    object_b.collision()
         return objects_in_collision
 
     def check_collision(self, object_a, object_b):

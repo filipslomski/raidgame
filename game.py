@@ -16,6 +16,7 @@ obstacle = Obstacle(init)
 obstacle.spawn()
 collision_detector = CollisionDetector(car, obstacle)
 
+# key bindings
 key_bindings = {
     pygame.K_LEFT: car.move_left,
     pygame.K_RIGHT: car.move_right,
@@ -23,7 +24,7 @@ key_bindings = {
     #pygame.K_DOWN: car.move_down
 }
 
-
+# event control
 def event_control():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,6 +34,7 @@ def event_control():
             if event.key in key_bindings:
                 key_bindings[event.key]()
 
+# main game loop
 while True:
     init.clock.tick(Consts.FRAME_RATE)
     init.gameDisplay.fill(Colors.WHITE)

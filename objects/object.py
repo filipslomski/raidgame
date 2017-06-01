@@ -19,3 +19,7 @@ class Object(object):
     @abstractmethod
     def display(self):
         pass
+
+    @abstractmethod
+    def collision(self):
+        pass

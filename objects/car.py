@@ -42,6 +42,9 @@ class Car(Object):
         if self.init.display_width - self.position.x < self.width or self.init.display_height - self.position.y < self.height:
             Text.message_display('You crashed!')
 
+    def collision(self):
+        Text.message_display('You crashed!')
+
 
 
 
