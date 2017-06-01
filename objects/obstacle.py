@@ -17,7 +17,7 @@ class Obstacle(Object):
 
     def spawn(self, position = None):
         if position is None:
-            self.position = Position(random.randrange(0, self.init.display_width), random.randrange(-500, -100))
+            self.position = Position(random.randrange(0, self.init.display_width - self.width), random.randrange(-700, -100))
         else:
             self.position = position
 
@@ -31,10 +31,10 @@ class Obstacle(Object):
     def spawn_new_if_collapsed(self):
         if self.position.y > self.init.display_height:
             self.spawn()
+            self.speed += 1
 
     def collision(self):
         self.speed = 0
 
     def update_score(self):
-        if self.position.y > self.init.display_height:
-            return 1
+        return 1 if self.position.y > self.init.display_height else 0

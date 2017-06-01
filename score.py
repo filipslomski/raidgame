@@ -20,4 +20,4 @@ class Score:
             self.points += object.update_score()
 
     def display(self):
-        self.text.message_display("Points: " + str(self.points), Position(0, 0))
+        self.text.message_display("Points: " + str(self.points), Position(105, 35), 40)

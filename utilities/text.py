@@ -14,8 +14,8 @@ class Text:
         textSurface = font.render(text, True, Colors.BLACK)
         return textSurface, textSurface.get_rect()
 
-    def message_display(self, text, position):
-        largeText = pygame.font.Font('freesansbold.ttf', 115)
+    def message_display(self, text, position, fontsize=115):
+        largeText = pygame.font.Font('freesansbold.ttf', fontsize)
         TextSurf, TextRect = self.text_objects(text, largeText)
         TextRect.center = (position.x, position.y)
         self.init.gameDisplay.blit(TextSurf, TextRect)

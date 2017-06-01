@@ -16,7 +16,7 @@ car.spawn()
 obstacle = Obstacle(init)
 obstacle.spawn()
 collision_detector = CollisionDetector(car, obstacle)
-score = Score(init, car, obstacle)
+score = Score(init, 0, car, obstacle)
 
 # key bindings
 key_bindings = {
@@ -42,6 +42,8 @@ while True:
     init.gameDisplay.fill(Colors.WHITE)
 
     event_control()
+    # update score
+    score.increase_points()
 
     # display objects
     car.display()
@@ -50,6 +52,6 @@ while True:
 
     obstacle.move()
 
-    print (collision_detector.check_collisions())
+    collision_detector.check_collisions()
 
     pygame.display.update()
