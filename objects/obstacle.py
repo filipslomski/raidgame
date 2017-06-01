@@ -34,3 +34,7 @@ class Obstacle(Object):
 
     def collision(self):
         self.speed = 0
+
+    def update_score(self):
+        if self.position.y > self.init.display_height:
+            return 1

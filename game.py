@@ -5,6 +5,7 @@ from objects.car import Car
 from objects.obstacle import Obstacle
 from utilities.consts import Consts
 from collisionDetector import CollisionDetector
+from score import Score
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
@@ -15,6 +16,7 @@ car.spawn()
 obstacle = Obstacle(init)
 obstacle.spawn()
 collision_detector = CollisionDetector(car, obstacle)
+score = Score(init, car, obstacle)
 
 # key bindings
 key_bindings = {
@@ -41,8 +43,11 @@ while True:
 
     event_control()
 
+    # display objects
     car.display()
     obstacle.display()
+    score.display()
+
     obstacle.move()
 
     print (collision_detector.check_collisions())

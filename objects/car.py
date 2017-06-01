@@ -8,13 +8,15 @@ class Car(Object):
 
     image_path = "images/car.png"
     image = None
-    speed = 7
+    speed = 8
+    text = None
 
     def __init__(self, init):
         super(Car, self).__init__(init)
         self.image = pygame.image.load_extended(self.image_path)
         self.width = 75
         self.height = 250
+        self.text = Text(init)
 
     def spawn(self, position = None):
         if position is None:
@@ -40,10 +42,13 @@ class Car(Object):
 
     def check_if_out_of_screen(self):
         if self.init.display_width - self.position.x < self.width or self.init.display_height - self.position.y < self.height:
-            Text.message_display('You crashed!')
+            self.text.message_display('You crashed!', Position(self.init.display_width / 2, self.init.display_height / 2))
 
     def collision(self):
-        Text.message_display('You crashed!')
+        self.text.message_display('You crashed!', Position(self.init.display_width / 2, self.init.display_height / 2))
+
+    def update_score(self):
+        return 0
 
 
 

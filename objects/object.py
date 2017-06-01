@@ -23,3 +23,7 @@ class Object(object):
     @abstractmethod
     def collision(self):
         pass
+
+    @abstractmethod
+    def update_score(self):
+        pass
