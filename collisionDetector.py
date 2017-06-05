@@ -2,9 +2,15 @@ class CollisionDetector(object):
 
     objects = []
 
-    def __init__(self, *args):
-        for arg in args:
-            self.objects.append(arg)
+    def register_object(self, object):
+        if not object in self.objects:
+            self.objects.append(object)
+        return self
+
+    def unregister_object(self, object):
+        if object in self.objects:
+            self.objects.remove(object)
+        return self
 
     def check_collisions(self):
         objects_in_collision = []

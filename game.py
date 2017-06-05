@@ -1,22 +1,22 @@
 import pygame
 from utilities.colors import Colors
 from init import Init
-from objects.car import Car
-from objects.obstacle import Obstacle
+from consts.objects import Objects
 from utilities.consts import Consts
 from collisionDetector import CollisionDetector
 from score import Score
+from objects.objectFactory import ObjectFactory
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
 
 # init objects
-car = Car(init)
+car = ObjectFactory(init).create_object(Objects.CAR)
+obstacle = ObjectFactory(init).create_object(Objects.OBSTACLE)
+collision_detector = CollisionDetector().register_object(car).register_object(obstacle)
+score = Score(init).register_object(obstacle)
 car.spawn()
-obstacle = Obstacle(init)
 obstacle.spawn()
-collision_detector = CollisionDetector(car, obstacle)
-score = Score(init, 0, car, obstacle)
 
 # key bindings
 key_bindings = {
