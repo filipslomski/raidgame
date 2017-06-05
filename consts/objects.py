@@ -1,3 +1,4 @@
 class Objects:
-    CAR = 'car'
-    OBSTACLE = 'obstacle'
+    PLAYER = 'player'
+    BOSS = 'boss'
+    DUNGEON = 'dungeon'

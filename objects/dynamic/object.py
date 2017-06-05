@@ -25,5 +25,9 @@ class Object(object):
         pass
 
     @abstractmethod
-    def update_score(self):
+    def death(self):
+        pass
+
+    @abstractmethod
+    def get_health(self):
         pass

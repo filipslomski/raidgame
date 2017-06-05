@@ -1,16 +1,22 @@
 import pygame
-from utilities.colors import Colors
-from init import Init
-from consts.objects import Objects
-from utilities.consts import Consts
+
 from collisionDetector import CollisionDetector
-from score import Score
-from objects.objectFactory import ObjectFactory
+from consts.objects import Objects
+from consts.dungeons import Dungeons
+from init import Init
+from objects.dynamic.objectFactory import ObjectFactory
+from objects.static.dungeonFactory import DungeonFactory
+from objects.static.dungeons.lavaDungeon import LavaDungeon
+from utilities.colors import Colors
+from utilities.consts import Consts
 
 init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
 
 # init objects
+player = ObjectFactory(init).create_object(Objects.PLAYER)
+lava_dungeon = DungeonFactory(init).create_object(Dungeons.LAVA_DUNGEON)
+frost_dungeon = DungeonFactory(init).create_object(Dungeons.FROST_DUNGEON)
 collision_detector = CollisionDetector()
 
 

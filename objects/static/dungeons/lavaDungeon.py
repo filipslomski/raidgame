@@ -1,0 +1,2 @@
+class LavaDungeon():
+    pass
