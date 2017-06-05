@@ -1,10 +1,7 @@
-from objects.car import Car
-from objects.obstacle import Obstacle
-
 
 class ObjectFactory():
 
-    objects = [Car, Obstacle]
+    objects = []
 
     init = None
 

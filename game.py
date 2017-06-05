@@ -11,19 +11,15 @@ init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
 init.initialise()
 
 # init objects
-car = ObjectFactory(init).create_object(Objects.CAR)
-obstacle = ObjectFactory(init).create_object(Objects.OBSTACLE)
-collision_detector = CollisionDetector().register_object(car).register_object(obstacle)
-score = Score(init).register_object(obstacle)
-car.spawn()
-obstacle.spawn()
+collision_detector = CollisionDetector()
+
 
 # key bindings
 key_bindings = {
-    pygame.K_LEFT: car.move_left,
-    pygame.K_RIGHT: car.move_right,
-    #pygame.K_UP: car.move_up,
-    #pygame.K_DOWN: car.move_down
+    #pygame.K_LEFT: ,
+    #pygame.K_RIGHT: ,
+    #pygame.K_UP: ,
+    #pygame.K_DOWN:
 }
 
 # event control
@@ -42,15 +38,8 @@ while True:
     init.gameDisplay.fill(Colors.WHITE)
 
     event_control()
-    # update score
-    score.increase_points()
 
     # display objects
-    car.display()
-    obstacle.display()
-    score.display()
-
-    obstacle.move()
 
     collision_detector.check_collisions()
 
