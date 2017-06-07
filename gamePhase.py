@@ -1,10 +1,16 @@
+from utilities.position import Position
+from init import Init
+
+
 class GamePhase:
     phase = 1
 
     @classmethod
-    def get_phase(self):
-        return self.phase
-
-    @classmethod
-    def set_phase(self, phase):
-        self.phase = phase
+    def initiate_second_phase(cls, player, boss, dungeons, collisionDetector):
+        player.position = Position(Init.display_width / 2, Init.display_height - player.height)
+        for dungeon in dungeons:
+            collisionDetector.unregister_object(dungeon)
+            dungeon.remove()
+        boss.position = Position(Init.display_width / 2, 50)
+        collisionDetector.register_object(boss)
+        cls.phase = 2

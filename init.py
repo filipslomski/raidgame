@@ -1,5 +1,7 @@
 import pygame
-from consts.game import Game
+
+from utilities.consts.game import Game
+
 
 class Init:
 

@@ -19,5 +19,15 @@ class Dungeon(object):
         self.position = self.dungeon_type.image_position
 
     def display(self):
-        if GamePhase.get_phase() == 1:
+        if GamePhase.phase == 1:
             Init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
+
+    def collision(self, object):
+        pass
+
+    def remove(self):
+        self.width = 0
+        self.height = 0
+        self.dungeon_type = None
+        self.position = None
+        self.image = None

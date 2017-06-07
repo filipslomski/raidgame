@@ -1,26 +1,28 @@
 import pygame
-
+from utilities.consts.dungeons import Dungeons
 from collisionDetector import CollisionDetector
-from consts.objects import Objects
-from consts.dungeons import Dungeons
+from gamePhase import GamePhase
 from init import Init
 from objects.dynamic.objectFactory import ObjectFactory
 from objects.static.dungeonFactory import DungeonFactory
-from utilities.position import Position
 from utilities.colors import Colors
-from utilities.consts import Consts
+from utilities.consts.objects import Objects
+from utilities.consts.game import Game
+from utilities.consts.other import Other
+from utilities.position import Position
 
 Init.initialise()
 
 # init objects
 player = ObjectFactory.create_object(Objects.PLAYER)
+boss = ObjectFactory.create_object(Objects.BOSS)
 lava_dungeon = DungeonFactory.create_object(Dungeons.DUNGEON_EXTERIOR, Dungeons.LAVA_DUNGEON)
 frost_dungeon = DungeonFactory().create_object(Dungeons.DUNGEON_EXTERIOR, Dungeons.FROST_DUNGEON)
 collision_detector = CollisionDetector()\
     .register_object(player)\
     .register_object(lava_dungeon)\
     .register_object(frost_dungeon)
-player.spawn(Position(Init.display_width / 2, Init.display_height - 50))
+player.spawn(Position(Init.display_width / 2, Init.display_height - player.height))
 lava_dungeon.spawn()
 frost_dungeon.spawn()
 
@@ -45,7 +47,7 @@ def event_control():
 
 # main game loop
 while True:
-    Init.clock.tick(Consts.FRAME_RATE)
+    Init.clock.tick(Game.FRAME_RATE)
     Init.gameDisplay.fill(Colors.WHITE)
 
     event_control()
@@ -54,7 +56,11 @@ while True:
     player.display()
     lava_dungeon.display()
     frost_dungeon.display()
+    boss.display()
 
     collision_detector.check_collisions()
+
+    if GamePhase.phase == Other.TRANSITION_PHASE:
+        GamePhase.initiate_second_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
 
     pygame.display.update()

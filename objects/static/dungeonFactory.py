@@ -1,8 +1,8 @@
 from objects.static.dungeon import Dungeon
 from objects.static.dungeon_interior import DungeonInterior
-from objects.static.dungeons.lavaDungeon import LavaDungeon
 from objects.static.dungeons.frostDungeon import FrostDungeon
-from consts.dungeons import Dungeons
+from objects.static.dungeons.lavaDungeon import LavaDungeon
+from utilities.consts.dungeons import Dungeons
 
 
 class DungeonFactory(object):
