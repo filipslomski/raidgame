@@ -6,27 +6,30 @@ from consts.dungeons import Dungeons
 from init import Init
 from objects.dynamic.objectFactory import ObjectFactory
 from objects.static.dungeonFactory import DungeonFactory
-from objects.static.dungeons.lavaDungeon import LavaDungeon
+from utilities.position import Position
 from utilities.colors import Colors
 from utilities.consts import Consts
 
-init = Init(Consts.SCREEN_WIDTH, Consts.SCREEN_HEIGHT, Consts.SCREEN_CAPTION)
-init.initialise()
+Init.initialise()
 
 # init objects
-player = ObjectFactory(init).create_object(Objects.PLAYER)
-lava_dungeon = DungeonFactory(init).create_object(Dungeons.LAVA_DUNGEON)
-frost_dungeon = DungeonFactory(init).create_object(Dungeons.FROST_DUNGEON)
-collision_detector = CollisionDetector()
-
+player = ObjectFactory.create_object(Objects.PLAYER)
+lava_dungeon = DungeonFactory.create_object(Dungeons.DUNGEON_EXTERIOR, Dungeons.LAVA_DUNGEON)
+frost_dungeon = DungeonFactory().create_object(Dungeons.DUNGEON_EXTERIOR, Dungeons.FROST_DUNGEON)
+collision_detector = CollisionDetector()\
+    .register_object(player)\
+    .register_object(lava_dungeon)\
+    .register_object(frost_dungeon)
+player.spawn(Position(Init.display_width / 2, Init.display_height - 50))
 
 # key bindings
 key_bindings = {
-    #pygame.K_LEFT: ,
-    #pygame.K_RIGHT: ,
-    #pygame.K_UP: ,
-    #pygame.K_DOWN:
+    pygame.K_A: player.move(Position(-7, 0)),
+    pygame.K_D: player.move(Position(7, 0)),
+    pygame.K_S: player.move(Position(0, -7)),
+    pygame.K_W: player.move(Position(0, 7))
 }
+
 
 # event control
 def event_control():
@@ -40,8 +43,8 @@ def event_control():
 
 # main game loop
 while True:
-    init.clock.tick(Consts.FRAME_RATE)
-    init.gameDisplay.fill(Colors.WHITE)
+    Init.clock.tick(Consts.FRAME_RATE)
+    Init.gameDisplay.fill(Colors.WHITE)
 
     event_control()
 

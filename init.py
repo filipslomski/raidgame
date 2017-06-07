@@ -1,19 +1,15 @@
 import pygame
-
+from consts.game import Game
 
 class Init:
 
     gameDisplay = None
     clock = None
-    display_width = 0
-    display_height = 0
-    caption = ""
+    display_width = Game.SCREEN_WIDTH
+    display_height = Game.SCREEN_HEIGHT
+    caption = Game.SCREEN_CAPTION
 
-    def __init__(self, width, height, caption):
-        self.display_width = width
-        self.display_height = height
-        self.caption = caption
-
+    @classmethod
     def initialise(self):
         pygame.init()
         self.gameDisplay = pygame.display.set_mode((self.display_width, self.display_height))

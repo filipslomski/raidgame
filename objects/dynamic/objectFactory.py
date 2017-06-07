@@ -6,10 +6,6 @@ class ObjectFactory():
 
     objects = [Boss, Player]
 
-    init = None
-
-    def __init__(self, init):
-        self.init = init
-
-    def create_object(self, object_type):
-        return eval(object_type.title())(self.init)
+    @staticmethod
+    def create_object(object_type):
+        return eval(object_type.title())()

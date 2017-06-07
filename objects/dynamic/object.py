@@ -4,16 +4,12 @@ from utilities.position import Position
 
 class Object(object):
 
-    init = None
     position = None # type: Position
     width = None
     height = None
 
-    def __init__(self, init):
-        self.init = init
-
     @abstractmethod
-    def spawn(self):
+    def spawn(self, position):
         pass
 
     @abstractmethod
@@ -21,7 +17,7 @@ class Object(object):
         pass
 
     @abstractmethod
-    def collision(self):
+    def collision(self, object):
         pass
 
     @abstractmethod
