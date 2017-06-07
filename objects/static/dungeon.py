@@ -8,6 +8,8 @@ class Dungeon(object):
     position = None
     image = None
     dungeon_type = None
+    width = 100
+    height = 100
 
     def __init__(self, dungeon_type):
         self.image = pygame.image.load_extended(dungeon_type.image_path)

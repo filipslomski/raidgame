@@ -6,7 +6,7 @@ from init import Init
 
 class Player(Object):
     health = 100
-    image_path = "images/units/player.png"
+    image_path = "images/units/player.jpg"
     image = None
 
     def __init__(self):

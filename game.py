@@ -21,13 +21,15 @@ collision_detector = CollisionDetector()\
     .register_object(lava_dungeon)\
     .register_object(frost_dungeon)
 player.spawn(Position(Init.display_width / 2, Init.display_height - 50))
+lava_dungeon.spawn()
+frost_dungeon.spawn()
 
 # key bindings
 key_bindings = {
-    pygame.K_A: player.move(Position(-7, 0)),
-    pygame.K_D: player.move(Position(7, 0)),
-    pygame.K_S: player.move(Position(0, -7)),
-    pygame.K_W: player.move(Position(0, 7))
+    pygame.K_a: 'player.move(Position(-7, 0))',
+    pygame.K_d: 'player.move(Position(7, 0))',
+    pygame.K_s: 'player.move(Position(0, 7))',
+    pygame.K_w: 'player.move(Position(0, -7))'
 }
 
 
@@ -39,7 +41,7 @@ def event_control():
             quit()
         if event.type == pygame.KEYDOWN:
             if event.key in key_bindings:
-                key_bindings[event.key]()
+                eval(key_bindings[event.key])
 
 # main game loop
 while True:
@@ -49,6 +51,9 @@ while True:
     event_control()
 
     # display objects
+    player.display()
+    lava_dungeon.display()
+    frost_dungeon.display()
 
     collision_detector.check_collisions()
 

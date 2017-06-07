@@ -8,7 +8,8 @@ class DungeonInterior():
     background_image = None
 
     def __init__(self, dungeon_type):
-        self.background_image = pygame.image.load_extended(dungeon_type.background_path)
+        pass
+        #self.background_image = pygame.image.load_extended(dungeon_type.background_path)
 
     def display(self):
         pass
