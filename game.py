@@ -60,7 +60,9 @@ while True:
 
     collision_detector.check_collisions()
 
-    if GamePhase.phase == Other.TRANSITION_PHASE:
+    if GamePhase.phase == Other.TRANSITION_PHASE_ONE:
         GamePhase.initiate_second_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
+    if GamePhase.phase == Other.TRANSITION_PHASE_TWO:
+        GamePhase.initiate_third_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
 
     pygame.display.update()

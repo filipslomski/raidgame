@@ -2,21 +2,21 @@ import pygame
 from objects.dynamic.object import Object
 from init import Init
 from gamePhase import GamePhase
+from utilities.consts.other import Other
 
 
 class Boss(Object):
-    health = 100
-    image_path = "images/units/player.jpg"
+    image_path = None
     boss_type = None
     image = None
-
-    def __init__(self):
-        self.image = pygame.image.load_extended(self.image_path)
-        self.width = 50
-        self.height = 50
+    health = None
 
     def set_boss_type(self, boss_type):
         self.boss_type = boss_type
+        self.health = boss_type.health
+        self.image = pygame.image.load_extended(boss_type.image_path)
+        self.width = boss_type.width
+        self.height = boss_type.height
 
     def spawn(self, position):
         self.position = position
@@ -25,14 +25,16 @@ class Boss(Object):
         if GamePhase.phase == 2:
             Init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
 
-    def move(self):
-        pass
+    def move_and_shoot(self):
+        if GamePhase.phase == 2:
+            self.boss_type.move(self.position)
+            self.boss_type.shoot(self.position)
 
     def collision(self, object):
         pass
 
     def death(self):
-        pass
+        GamePhase.phase = Other.TRANSITION_PHASE_TWO
 
     def get_health(self):
-        pass
+        return self.health

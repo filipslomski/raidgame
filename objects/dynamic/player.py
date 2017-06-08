@@ -24,15 +24,16 @@ class Player(Object):
         Init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
 
     def move(self, position):
-        self.position.x += position.x
-        self.position.y += position.y
+        if GamePhase.phase < 3:
+            self.position.x += position.x
+            self.position.y += position.y
 
     def collision(self, object):
         if type(object) is Dungeon:
-            GamePhase.phase = Other.TRANSITION_PHASE
+            GamePhase.phase = Other.TRANSITION_PHASE_ONE
 
     def death(self):
-        pass
+        GamePhase.phase = Other.TRANSITION_PHASE_TWO
 
     def get_health(self):
-        pass
+        return self.health
