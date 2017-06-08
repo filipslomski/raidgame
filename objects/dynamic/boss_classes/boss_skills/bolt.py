@@ -7,5 +7,5 @@ class Bolt(Skill):
     skill_base_damage = 6
     speed = 40
 
-    def shoot(self, position):
+    def shoot(self, position, creature_level):
         pass

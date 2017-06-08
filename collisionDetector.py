@@ -25,9 +25,6 @@ class CollisionDetector(object):
     def check_collision(self, object_a, object_b):
         x_axis_collision = False
         y_axis_collision = False
-        print(type(object_a))
-        print(type(object_b))
-        print(object_a.height, object_b.width)
         if (object_a.position.x >= object_b.position.x and
                 object_a.position.x - object_b.position.x < object_b.width or
                 object_b.position.x > object_a.position.x and

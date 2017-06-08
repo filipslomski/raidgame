@@ -7,6 +7,7 @@ class Object(object):
     position = None # type: Position
     width = None
     height = None
+    speed = None
 
     @abstractmethod
     def spawn(self, position):

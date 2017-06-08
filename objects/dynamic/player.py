@@ -1,6 +1,7 @@
 import pygame
 
 from gamePhase import GamePhase
+from dungeon_state import DungeonState
 from init import Init
 from objects.dynamic.object import Object
 from objects.static.dungeon import Dungeon
@@ -14,8 +15,8 @@ class Player(Object):
 
     def __init__(self):
         self.image = pygame.image.load_extended(self.image_path)
-        self.height = 50
-        self.width = 50
+        self.height = 100
+        self.width = 71
 
     def spawn(self, position):
         self.position = position
@@ -31,6 +32,7 @@ class Player(Object):
     def collision(self, object):
         if type(object) is Dungeon:
             GamePhase.phase = Other.TRANSITION_PHASE_ONE
+            DungeonState.current_dungeon = object.dungeon_type
 
     def death(self):
         GamePhase.phase = Other.TRANSITION_PHASE_TWO

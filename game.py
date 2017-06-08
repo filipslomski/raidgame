@@ -28,10 +28,10 @@ frost_dungeon.spawn()
 
 # key bindings
 key_bindings = {
-    pygame.K_a: 'player.move(Position(-7, 0))',
-    pygame.K_d: 'player.move(Position(7, 0))',
-    pygame.K_s: 'player.move(Position(0, 7))',
-    pygame.K_w: 'player.move(Position(0, -7))'
+    pygame.K_a: 'player.move(Position(-12, 0))',
+    pygame.K_d: 'player.move(Position(12, 0))',
+    pygame.K_s: 'player.move(Position(0, 12))',
+    pygame.K_w: 'player.move(Position(0, -12))'
 }
 
 
@@ -64,5 +64,7 @@ while True:
         GamePhase.initiate_second_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
     if GamePhase.phase == Other.TRANSITION_PHASE_TWO:
         GamePhase.initiate_third_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
+    if GamePhase.phase == 2:
+        boss.move_and_shoot()
 
     pygame.display.update()

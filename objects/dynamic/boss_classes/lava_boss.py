@@ -1,11 +1,11 @@
-from objects.dynamic.boss_classes.boss import Boss
+from objects.dynamic.boss_classes.boss_being import BossBeing
 import random
 
 
-class LavaBoss(Boss):
+class LavaBoss(BossBeing):
     image_path = "images/units/bosses/lava_boss.jpg"
-    width = 50
-    height = 50
+    width = 197
+    height = 200
     speed = 15
     health = 100
     experience = 100
@@ -13,7 +13,8 @@ class LavaBoss(Boss):
     firepower = 2
 
     def move(self, position):
-        self.boss_behaviors[random.randint(0, len(self.boss_behaviors) - 1)].move(position, self.speed)
+        self.behavior.move(position, self.speed)
 
     def shoot(self, position):
-        pass
+        if random.randint(0, 100) < self.firepower:
+            self.boss_skills[random.randint(0, len(self.boss_skills) - 1)].shoot(position, self.level)

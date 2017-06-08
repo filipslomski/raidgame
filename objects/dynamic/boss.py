@@ -17,6 +17,7 @@ class Boss(Object):
         self.image = pygame.image.load_extended(boss_type.image_path)
         self.width = boss_type.width
         self.height = boss_type.height
+        self.speed = boss_type.speed
 
     def spawn(self, position):
         self.position = position
@@ -28,7 +29,7 @@ class Boss(Object):
     def move_and_shoot(self):
         if GamePhase.phase == 2:
             self.boss_type.move(self.position)
-            self.boss_type.shoot(self.position)
+            #self.boss_type.shoot(self.position)
 
     def collision(self, object):
         pass

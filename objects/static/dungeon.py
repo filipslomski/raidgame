@@ -8,12 +8,14 @@ class Dungeon(object):
     position = None
     image = None
     dungeon_type = None
-    width = 100
-    height = 100
+    width = None
+    height = None
 
     def __init__(self, dungeon_type):
         self.image = pygame.image.load_extended(dungeon_type.image_path)
         self.dungeon_type = dungeon_type
+        self.width = dungeon_type.width
+        self.height = dungeon_type.height
 
     def spawn(self):
         self.position = self.dungeon_type.image_position
