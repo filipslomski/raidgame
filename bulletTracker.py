@@ -3,7 +3,6 @@ from bullets_state import BulletsState
 
 class BulletTracker(object):
 
-    bullets = []
     targets = []
 
     def register_target(self, object):
@@ -16,7 +15,8 @@ class BulletTracker(object):
             self.targets.remove(object)
         return self
 
-    def create_bullets(self):
-        if BulletsState.shoot:
-            pass
-
+    def manage_bullets(self):
+        for object in self.targets:
+            if object.shoot != False:
+                pass
+                #new bullet

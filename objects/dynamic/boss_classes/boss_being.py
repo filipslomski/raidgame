@@ -33,5 +33,5 @@ class BossBeing(object):
         pass
 
     @abstractmethod
-    def shoot(self, position):
+    def shoot(self):
         pass

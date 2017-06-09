@@ -7,5 +7,5 @@ class Skill(object):
     image_path = None
 
     @abstractmethod
-    def shoot(self, position, creature_level):
+    def shoot(self, creature_level):
         pass

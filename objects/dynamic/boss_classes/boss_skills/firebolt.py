@@ -7,5 +7,5 @@ class Firebolt(Skill):
     speed = 45
     skill_base_damage = 4
 
-    def shoot(self, position, creature_level):
+    def shoot(self, creature_level):
         pass

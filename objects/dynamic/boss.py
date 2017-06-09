@@ -26,10 +26,12 @@ class Boss(Object):
         if GamePhase.phase == 2:
             Init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
 
-    def move_and_shoot(self):
+    def move(self):
         if GamePhase.phase == 2:
             self.boss_type.move(self.position)
-            self.boss_type.shoot(self.position)
+
+    def shoot(self):
+        return self.boss_type.shoot()
 
     def collision(self, object):
         pass

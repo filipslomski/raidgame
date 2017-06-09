@@ -7,5 +7,5 @@ class Frostbolt(Skill):
     speed = 30
     skill_base_damage = 5
 
-    def shoot(self, position, creature_level):
+    def shoot(self, creature_level):
         pass

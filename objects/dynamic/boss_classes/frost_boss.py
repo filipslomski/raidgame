@@ -15,6 +15,8 @@ class FrostBoss(BossBeing):
     def move(self, position):
         self.behavior.move(position, self.speed)
 
-    def shoot(self, position):
+    def shoot(self):
         if random.randint(0, 100) < self.firepower:
-            self.boss_skills[random.randint(0, len(self.boss_skills) - 1)]().shoot(position, self.level)
+            return self.boss_skills[random.randint(0, len(self.boss_skills) - 1)]().shoot(self.level)
+        else:
+            return False
