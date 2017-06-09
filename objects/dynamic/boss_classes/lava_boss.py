@@ -17,4 +17,4 @@ class LavaBoss(BossBeing):
 
     def shoot(self, position):
         if random.randint(0, 100) < self.firepower:
-            self.boss_skills[random.randint(0, len(self.boss_skills) - 1)].shoot(position, self.level)
+            self.boss_skills[random.randint(0, len(self.boss_skills) - 1)]().shoot(position, self.level)

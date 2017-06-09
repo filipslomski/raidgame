@@ -29,7 +29,7 @@ class Boss(Object):
     def move_and_shoot(self):
         if GamePhase.phase == 2:
             self.boss_type.move(self.position)
-            #self.boss_type.shoot(self.position)
+            self.boss_type.shoot(self.position)
 
     def collision(self, object):
         pass

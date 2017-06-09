@@ -1,5 +1,5 @@
 from objects.dynamic.boss_classes.boss_skills.skill import Skill
-
+from bullets_state import BulletsState
 
 class Bolt(Skill):
 
@@ -8,4 +8,4 @@ class Bolt(Skill):
     speed = 40
 
     def shoot(self, position, creature_level):
-        pass
+        BulletsState.initiator
