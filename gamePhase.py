@@ -16,8 +16,7 @@ class GamePhase:
     }
 
     @classmethod
-    def initiate_second_phase(cls, player, boss, dungeons, collisionDetector):
-        print('initiate')
+    def initiate_second_phase(cls, player, boss, dungeons, collisionDetector, bulletTracker):
         player.position = Position(Init.display_width / 2, Init.display_height - player.height)
         for dungeon in dungeons:
             collisionDetector.unregister_object(dungeon)
@@ -26,6 +25,7 @@ class GamePhase:
         boss.set_boss_type(cls.dungeon_boss[DungeonState.current_dungeon]())
         boss.boss_type.select_boss_behavior()
         collisionDetector.register_object(boss)
+        bulletTracker.register_target(boss).register_target(player)
         cls.phase = 2
 
     @classmethod

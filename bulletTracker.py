@@ -1,8 +1,18 @@
-from bullets_state import BulletsState
+from objects.dynamic.boss_classes.boss_skills.firebolt import Firebolt
+from objects.dynamic.boss_classes.boss_skills.frostbolt import Frostbolt
+from objects.dynamic.boss_classes.boss_skills.bolt import Bolt
+from objects.dynamic.bullets.boltBullet import BoltBullet
+from objects.dynamic.bullets.fireboltBullet import FireboltBullet
+from objects.dynamic.bullets.frostboltBullet import FrostboltBullet
 
 
 class BulletTracker(object):
 
+    skill_to_bullet = {
+        Firebolt: FireboltBullet,
+        Frostbolt: FrostboltBullet,
+        Bolt: BoltBullet
+    }
     targets = []
 
     def register_target(self, object):
@@ -17,6 +27,6 @@ class BulletTracker(object):
 
     def manage_bullets(self):
         for object in self.targets:
-            if object.shoot != False:
-                pass
-                #new bullet
+            data = object.shoot()
+            if data != False:
+                self.skill_to_bullet[data['bullet_type']](data['speed'], data['initiator'], data['target'], data['damage'])

@@ -28,3 +28,7 @@ class Object(object):
     @abstractmethod
     def get_health(self):
         pass
+
+    @abstractmethod
+    def shoot(self):
+        pass

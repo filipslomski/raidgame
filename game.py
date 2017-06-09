@@ -1,6 +1,7 @@
 import pygame
 from utilities.consts.dungeons import Dungeons
 from collisionDetector import CollisionDetector
+from bulletTracker import BulletTracker
 from gamePhase import GamePhase
 from init import Init
 from objects.dynamic.objectFactory import ObjectFactory
@@ -22,6 +23,7 @@ collision_detector = CollisionDetector()\
     .register_object(player)\
     .register_object(lava_dungeon)\
     .register_object(frost_dungeon)
+bullet_tracker = BulletTracker()
 player.spawn(Position(Init.display_width / 2, Init.display_height - player.height))
 lava_dungeon.spawn()
 frost_dungeon.spawn()
@@ -61,10 +63,11 @@ while True:
     collision_detector.check_collisions()
 
     if GamePhase.phase == Other.TRANSITION_PHASE_ONE:
-        GamePhase.initiate_second_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
+        GamePhase.initiate_second_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector, bullet_tracker)
     if GamePhase.phase == Other.TRANSITION_PHASE_TWO:
         GamePhase.initiate_third_phase(player, boss, [lava_dungeon, frost_dungeon], collision_detector)
     if GamePhase.phase == 2:
-        boss.move_and_shoot()
+        boss.move()
+        bullet_tracker.manage_bullets()
 
     pygame.display.update()

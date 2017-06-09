@@ -34,6 +34,9 @@ class Player(Object):
             GamePhase.phase = Other.TRANSITION_PHASE_ONE
             DungeonState.current_dungeon = object.dungeon_type
 
+    def shoot(self):
+        return False
+
     def death(self):
         GamePhase.phase = Other.TRANSITION_PHASE_TWO
 

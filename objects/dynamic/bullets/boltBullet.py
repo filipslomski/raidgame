@@ -2,6 +2,7 @@ import pygame
 from objects.dynamic.bullets.bullet import Bullet
 from init import Init
 from gamePhase import GamePhase
+from utilities.consts.game import Game
 
 
 class BoltBullet(Bullet):
@@ -17,7 +18,10 @@ class BoltBullet(Bullet):
             Init.gameDisplay.blit(self.image, (self.current_position.x, self.current_position.y))
 
     def move(self):
-        pass
+        dx, dy = (self.target_position.x - self.start_position.x, self.target_position.y - self.target_position.y)
+        stepx, stepy = (float(dx) / Game.FRAME_RATE, float(dy) / Game.FRAME_RATE)
+        self.position.x += stepx
+        self.position.y += stepy
 
     def destroy(self):
         pass
