@@ -8,6 +8,7 @@ from objects.dynamic.bullets.frostboltBullet import FrostboltBullet
 
 class BulletTracker(object):
 
+    bullets = []
     skill_to_bullet = {
         Firebolt: FireboltBullet,
         Frostbolt: FrostboltBullet,
@@ -26,7 +27,13 @@ class BulletTracker(object):
         return self
 
     def manage_bullets(self):
-        for object in self.targets:
-            data = object.shoot()
+        for initiator in self.targets:
+            data = initiator.shoot()
             if data != False:
-                self.skill_to_bullet[data['bullet_type']](data['speed'], data['initiator'], data['target'], data['damage'])
+                for object in self.targets:
+                    if type(object) == data['target']:
+                        bullet = self.skill_to_bullet[data['bullet_type']](data['speed'], initiator, object, data['damage'])
+                        self.bullets.append(bullet)
+        for bullet in self.bullets:
+            bullet.display()
+            bullet.move()

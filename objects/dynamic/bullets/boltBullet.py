@@ -14,12 +14,17 @@ class BoltBullet(Bullet):
         self.image = pygame.image.load_extended(self.image_path)
 
     def display(self):
-        if GamePhase.phase == 2:
-            Init.gameDisplay.blit(self.image, (self.current_position.x, self.current_position.y))
+        if GamePhase.phase == 2 and (
+                self.position.x != self.target_position.x or self.position.y != self.target_position.y):
+            Init.gameDisplay.blit(self.image, (self.position.x, self.position.y))
 
     def move(self):
-        dx, dy = (self.target_position.x - self.start_position.x, self.target_position.y - self.target_position.y)
+        print('start', self.start_position.y)
+        print('target', self.target_position.y)
+        dx, dy = (self.target_position.x - self.start_position.x, self.target_position.y - self.start_position.y)
+        print('dx dy', dx, dy)
         stepx, stepy = (float(dx) / Game.FRAME_RATE, float(dy) / Game.FRAME_RATE)
+        print('stepx stepy', stepx, stepy)
         self.position.x += stepx
         self.position.y += stepy
 
